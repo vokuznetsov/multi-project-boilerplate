@@ -1,2 +1,19 @@
+pluginManagement {
+    repositories {
+        // put here repositories where gradle plugins are located
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url 'https://repo.spring.io/milestone'
+        }
+        gradlePluginPortal()
+        mavenCentral()
+        jcenter()
+    }
+    resolutionStrategy {
+    }
+}
+
 rootProject.name = 'boilerplate'
 include 'backend', 'base'

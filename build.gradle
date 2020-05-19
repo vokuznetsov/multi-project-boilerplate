@@ -6,6 +6,9 @@ buildscript {
 
         springBootVersion = '2.3.0.RELEASE'
         lombokVersion = '5.0.1'
+        checkstyleVersion = '8.32'
+        spotbugsVersion = '4.2.0'
+        pmdVersion = '6.23.0'
         junitVersion = '4.12'
     }
 }
@@ -13,6 +16,7 @@ buildscript {
 plugins {
     id "org.springframework.boot" version "${springBootVersion}" apply false
     id "io.freefair.lombok" version "${lombokVersion}" apply false
+    id "com.github.spotbugs" version "${spotbugsVersion}" apply false
 }
 
 subprojects {
@@ -24,13 +28,16 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: "io.freefair.lombok"
+    apply plugin: "checkstyle"
+    apply plugin: "com.github.spotbugs"
+    apply plugin: "pmd"
 
     repositories {
         mavenCentral()
-        jcenter()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        jcenter()
     }
 
     sourceCompatibility = JavaVersion.VERSION_13
@@ -42,4 +49,30 @@ subprojects {
     }
 
     generateLombokConfig.enabled = false
+
+    checkstyle {
+        configFile = rootProject.file('/config/checkstyle/checkstyle.xml') // default value, the line can be remove
+        toolVersion = "${checkstyleVersion}"
+        ignoreFailures = false
+    }
+
+    spotbugs {
+        ignoreFailures = false
+    }
+
+    pmd {
+        ignoreFailures = false
+        toolVersion = "${pmdVersion}"
+        rulePriority = 2
+        ruleSets = ["category/java/errorprone.xml",
+                    "category/java/bestpractices.xml",
+                    "category/java/codestyle.xml",
+                    "category/java/design.xml",
+                    "category/java/documentation.xml",
+                    "category/java/errorprone.xml",
+                    "category/java/multithreading.xml",
+                    "category/java/performance.xml",
+                    "category/java/security.xml"
+        ]
+    }
 }
