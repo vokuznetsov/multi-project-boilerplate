@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        artifactId = 'boilerplate'
+        artifactGroup = 'com.github.boilerplate'
+        artifactVersion = '0.0.1-SNAPSHOT'
+
+        springBootVersion = '2.3.0.RELEASE'
+        lombokVersion = '5.0.1'
+        junitVersion = '4.12'
+    }
+}
+
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}" apply false
+    id "io.freefair.lombok" version "${lombokVersion}" apply false
+}
+
+subprojects {
+    group "${artifactGroup}"
+    version "${artifactVersion}"
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: "io.freefair.lombok"
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_13
+
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web"
+
+        testImplementation "junit:junit:${junitVersion}"
+    }
+
+    generateLombokConfig.enabled = false
+}

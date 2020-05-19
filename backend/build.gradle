@@ -1,0 +1,11 @@
+ext {
+    artifactId = 'backend'
+}
+
+jar {
+    enabled = true
+}
+
+bootJar {
+    enabled = false
+}

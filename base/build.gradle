@@ -1,0 +1,11 @@
+ext {
+    artifactId = 'base'
+}
+
+bootJar {
+    archivesBaseName = 'base'
+}
+
+dependencies {
+    implementation project(":backend")
+}
