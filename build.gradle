@@ -60,6 +60,8 @@ subprojects {
         configFile = rootProject.file('/config/checkstyle/checkstyle.xml') // default value, the line can be remove
         toolVersion = "${checkstyleVersion}"
         ignoreFailures = false
+        // remove this line or increase the value if you don't want to fix checkstyle warnings
+        maxWarnings = 0
     }
 
     spotbugs {
