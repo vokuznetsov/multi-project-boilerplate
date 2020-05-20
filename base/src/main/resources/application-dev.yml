@@ -1,2 +1,11 @@
 server:
     port: 8081
+
+spring:
+    datasource:
+        database:
+            host: localhost
+            port: 5432
+            name: boilerplate
+        username: test
+        password: postgres

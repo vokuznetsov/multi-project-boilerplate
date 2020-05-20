@@ -6,6 +6,9 @@ buildscript {
 
         springBootVersion = '2.3.0.RELEASE'
         lombokVersion = '5.0.1'
+        tomcatJdbc = '9.0.35'
+        postgresVersion = '42.2.6'
+        flywayVersion = '6.4.2'
         checkstyleVersion = '8.32'
         spotbugsVersion = '4.2.0'
         pmdVersion = '6.23.0'
@@ -44,6 +47,9 @@ subprojects {
 
     dependencies {
         implementation "org.springframework.boot:spring-boot-starter-web"
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation "org.apache.tomcat:tomcat-jdbc:${tomcatJdbc}"
+        implementation "org.postgresql:postgresql:${postgresVersion}"
 
         testImplementation "junit:junit:${junitVersion}"
     }

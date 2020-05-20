@@ -1,6 +1,41 @@
 spring:
     profiles:
         active: dev
+    flyway:
+        locations: classpath:/flyway/migrations
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        type: org.apache.tomcat.jdbc.pool.DataSource
+        url: jdbc:postgresql://${spring.datasource.database.host}:${spring.datasource.database.port}/${spring.datasource.database.name}
+        database:
+            host: localhost
+            port: 5432
+            name: boilerplate
+        username: test
+        password: postgres
+        tomcat:
+            validation-query: SELECT 1
+            validation-interval: 30000          # run validation-query once at this time, no more
+            test-on-borrow: true
+            remove-abandoned: true
+            remove-abandoned-timeout: 480
+            test-while-idle: true
+            time-between-eviction-runs-millis: 60000
+            log-validation-errors: true
+            log-abandoned: true
+    jpa:
+        hibernate:
+            ddl-auto: validate
+            naming:
+                strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQL94Dialect
+                # MORE INFO: https://stackoverflow.com/questions/4588755/disabling-contextual-lob-creation-as-createclob-method-threw-error
+                # AND THERE  https://github.com/pgjdbc/pgjdbc/issues/1102
+                jdbc.lob.non_contextual_creation: true
+        show-sql: false
+        database: default
     jackson:
         property-naming-strategy: SNAKE_CASE
         serialization.write_dates_as_timestamps: false

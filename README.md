@@ -5,7 +5,12 @@ The project is configured for following technological stack:
     Java 13
     Spring-boot: 2.3.0
     Gradle: 6.4
+    Postgres: 10
     Lombok: 5.0.1
+    
+    // only in docker-compose
+    Kafka: latest
+    Zookeeper: latest
 
 Plugins:
 
@@ -34,8 +39,10 @@ Plugins:
 
 Request *http://localhost:8081/ (GET)*. You should get
 
-      {
-        "value":"Hello world!"
-      }
+    {
+      "id": 1,
+      "name": "boilerplate",
+      "comment": "comment"
+    }
     
 #### Switch between branch to find other boilerplate configurations 

@@ -8,4 +8,6 @@ bootJar {
 
 dependencies {
     implementation project(":backend")
+
+    implementation "org.flywaydb:flyway-core:${flywayVersion}"
 }

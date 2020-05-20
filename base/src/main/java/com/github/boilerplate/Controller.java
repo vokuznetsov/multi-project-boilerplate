@@ -7,12 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
     @RequestMapping("/")
-    public Report createReportCatalog() {
-        String str = "Hello world!";
-
-        Report report = new Report();
-        report.setValue(str);
-
-        return report;
+    public Boilerplate createReportCatalog() {
+        return new Boilerplate(1L, "boilerplate", "comment");
     }
 }
