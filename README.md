@@ -38,4 +38,4 @@ Request *http://localhost:8081/ (GET)*. You should get
         "value":"Hello world!"
       }
     
-#### Switch between branch to find other boilerplate configurations 
+#### Switch between branches to find other boilerplate configurations 
